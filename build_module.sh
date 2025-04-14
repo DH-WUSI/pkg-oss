@@ -359,22 +359,22 @@ fi
 echo "$ME: INFO: Downloading NGINX packaging tool"
 cd $BUILD_DIR
 
-PKG_OSS_URL="https://hg.nginx.org/pkg-oss"
+PKG_OSS_URL="https://github.com/diamondhead-ss/pkg-oss"
 
 if [ "$PKG_FMT" = "rpm" ]; then
 	if [ `rpm --eval "0%{?rhel}"` -lt 8 ] || [ `rpm --eval "0%{?amzn}"` -le 2 ]; then
-		PKG_OSS_URL="http://hg.nginx.org/pkg-oss"
+		PKG_OSS_URL="http://github.com/diamondhead-ss/pkg-oss"
 	fi
 fi
 
-hg clone $PKG_OSS_URL
+git clone $PKG_OSS_URL
 
 if [ "$BUILD_PLATFORM" = "OSS" ]; then
 	if [ "$OSS_VER" != "" ]; then
-		( cd pkg-oss && hg update `hg tags | grep "^$OSS_VER" | head -1 | awk '{print $1}'` )
+		( cd pkg-oss && git checkout $(git tags -l | grep "^$OSS_VER" | head -1) )
 	fi
 else
-	( cd pkg-oss && hg update target-plus-r$PLUS_REL )
+	( cd pkg-oss && git checkout target-plus-r$PLUS_REL )
 fi
 cd pkg-oss/$PACKAGING_DIR
 if [ $? -ne 0 ]; then

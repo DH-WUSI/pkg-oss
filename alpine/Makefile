@@ -254,7 +254,7 @@ nginx-tests:
 		cp -rP $(SRCPATH)/nginx-tests nginx-tests ; \
 	else \
 		echo "===> Cloning tests" ; \
-		hg clone https://hg.nginx.org/nginx-tests ; \
+		git clone https://github.com/nginx/nginx-tests ; \
 	fi ; \
 	}
 
