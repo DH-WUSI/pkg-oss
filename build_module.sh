@@ -359,11 +359,11 @@ fi
 echo "$ME: INFO: Downloading NGINX packaging tool"
 cd $BUILD_DIR
 
-PKG_OSS_URL="https://github.com/diamondhead-ss/pkg-oss"
+PKG_OSS_URL="https://github.com/DH-WUSI/pkg-oss"
 
 if [ "$PKG_FMT" = "rpm" ]; then
 	if [ `rpm --eval "0%{?rhel}"` -lt 8 ] || [ `rpm --eval "0%{?amzn}"` -le 2 ]; then
-		PKG_OSS_URL="http://github.com/diamondhead-ss/pkg-oss"
+		PKG_OSS_URL="http://github.com/DH-WUSI/pkg-oss"
 	fi
 fi
 
